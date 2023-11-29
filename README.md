@@ -42,7 +42,9 @@ npm install ns-import
 
 ## 👨‍💻 使用
 
-**注意！ES modules  和 CommonJS 两种使用方法不可混用！ **
+**注意：ES modules  和 CommonJS 两种使用方法不可混用！ **
+
+**本项目仅适用于 NodeJS 端！无法在浏览器中运行！**
 
 ### 在 ES modules 中使用
 
