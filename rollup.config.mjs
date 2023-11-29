@@ -44,7 +44,7 @@ function getPlugins({ isBrowser = false, isMin = false, isDeclaration = false })
         typescript({
             tsconfig: 'tsconfig.json',
             module: 'esnext',
-            target: 'es2019', // node >= 14
+            target: 'es2019', // node >= 12
             declaration: isDeclaration,
             sourceMap,
         }),
