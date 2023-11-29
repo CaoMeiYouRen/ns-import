@@ -19,13 +19,15 @@
 </p>
 
 
-> Import/Require with namespace. 基于命名空间的 import 和 require
+> Import/Require with namespace. 基于命名空间的 import 和 require。
+>
+> 主要代码和灵感参考自：https://github.com/shigma/ns-require 
+>
+> 在此表示感谢。
 
 ## 🏠 主页
 
 [https://github.com/CaoMeiYouRen/ns-import#readme](https://github.com/CaoMeiYouRen/ns-import#readme)
-
-
 
 ## 📦 依赖要求
 
@@ -40,8 +42,62 @@ npm install ns-import
 
 ## 👨‍💻 使用
 
-```sh
-npm run start
+**注意！ES modules  和 CommonJS 两种使用方法不可混用！ **
+
+### 在 ES modules 中使用
+
+```ts
+// Basic Usage
+import { ns } from 'ns-import'
+
+const scope = ns({
+  namespace: 'awesome',
+  prefix: 'plugin',
+})
+
+// 注意动态 import 需要配合 await 使用
+await scope.import('foo')    // will resolve to `awesome-plugin-foo`
+await scope.import('@foo/bar')   // will resolve to `@foo/awesome-plugin-bar`
+
+// With Official Scope
+import { ns } from 'ns-import'
+
+const scope = ns({
+  namespace: 'awesome',
+  prefix: 'plugin',
+  official: 'scope',
+})
+
+// 注意动态 import 需要配合 await 使用
+await scope.import('foo')    // will resolve to `@scope/plugin-foo`
+       						 // and then `awesome-plugin-foo`
+await scope.import('@foo/bar') // will resolve to `@foo/awesome-plugin-bar`
+```
+
+### 在 CommonJS 中使用
+
+```ts
+// Basic Usage
+const { ns } = require('ns-import')
+const scope = ns({
+  namespace: 'awesome',
+  prefix: 'plugin',
+})
+scope.require('foo')        // will resolve to `awesome-plugin-foo`
+scope.require('@foo/bar')   // will resolve to `@foo/awesome-plugin-bar`
+
+// With Official Scope
+const { ns } = require('ns-import')
+const scope = ns({
+  namespace: 'awesome',
+  prefix: 'plugin',
+  official: 'scope',
+})
+
+scope.require('foo')        // will resolve to `@scope/plugin-foo`
+                            // and then `awesome-plugin-foo`
+scope.require('@foo/bar')   // will resolve to `@foo/awesome-plugin-bar`
+
 ```
 
 ## 🛠️ 开发

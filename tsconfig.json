@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "commonjs", //指定生成哪个模块系统代码
+        "module": "esnext", //指定生成哪个模块系统代码
         "target": "esnext", //目标代码类型
         "noImplicitAny": false, //在表达式和声明上有隐含的'any'类型时报错。
         "allowJs": true, //允许编译js文件

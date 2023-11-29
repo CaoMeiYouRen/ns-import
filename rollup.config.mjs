@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import { defineConfig } from 'rollup'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
@@ -8,8 +10,6 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import replace from '@rollup/plugin-replace'
 import dts from 'rollup-plugin-dts'
 import alias from '@rollup/plugin-alias'
-import fs from 'fs'
-import path from 'path'
 
 const { dependencies, peerDependencies, name } = JSON.parse(fs.readFileSync('./package.json'))
 
@@ -44,7 +44,7 @@ function getPlugins({ isBrowser = false, isMin = false, isDeclaration = false })
         typescript({
             tsconfig: 'tsconfig.json',
             module: 'esnext',
-            target: 'es2019', // node >= 12
+            target: 'es2019', // node >= 14
             declaration: isDeclaration,
             sourceMap,
         }),
@@ -54,7 +54,7 @@ function getPlugins({ isBrowser = false, isMin = false, isDeclaration = false })
             entries: [
                 { find: '@', replacement: path.resolve('./src') },
             ],
-        })
+        }),
     )
     plugins.push(
         commonjs({
