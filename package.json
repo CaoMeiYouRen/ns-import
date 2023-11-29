@@ -1,6 +1,6 @@
 {
   "name": "ns-import",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Import/Require with namespace. 基于命名空间的 import 和 require",
   "author": "CaoMeiYouRen",
   "private": false,
